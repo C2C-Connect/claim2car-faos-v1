@@ -1,5 +1,5 @@
 # claim2car-faos-v1
-Here's a clean README based on the current state of the project, focused on execution rather than the longer-term architecture vision documented in Claim2Car Connect - state of the union copy.docx. [1](https://onedrive.live.com/personal/da7ed8d02224c6f9/_layouts/15/doc.aspx?resid=98d09e52-721c-4b9d-a690-3e9691255a7b&cid=da7ed8d02224c6f9)
+
 
 # Claim2Car Connect
 
