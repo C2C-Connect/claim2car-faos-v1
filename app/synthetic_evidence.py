@@ -44,6 +44,17 @@ class Review:
     schema_version: str = VERSION
 
 @dataclass(frozen=True)
+class Seal:
+    manifest_digest: str
+    shot_list_version: str
+    event_id: str
+    sequence: int
+    actor: str
+    occurred_at: str
+    reason: str
+    schema_version: str = VERSION
+
+@dataclass(frozen=True)
 class EvidenceState:
     session_id: str
     created: bool = False
@@ -52,6 +63,7 @@ class EvidenceState:
     artifacts: tuple[Artifact, ...] = ()
     quality: tuple[Quality, ...] = ()
     reviews: tuple[Review, ...] = ()
+    seal: Seal | None = None
     schema_version: str = VERSION
 
 @dataclass(frozen=True)
@@ -109,7 +121,7 @@ def reconstruct(session_id, events):
             elif any(a.slot == item.slot for a in state.artifacts):
                 raise ValueError("DUPLICATE_CAPTURE_SLOT")
             else:
-                state = replace(state, artifacts=state.artifacts + (item,))
+                state = replace(state, artifacts=state.artifacts + (item,), seal=None)
         elif event.kind == "QUALITY_RECORDED":
             item = typed(Quality, p)
             if not isinstance(item.artifact_id, str) or not any(a.artifact_id == item.artifact_id for a in state.artifacts) or type(item.passed) is not bool or item.method != "synthetic-fixture":
@@ -123,6 +135,14 @@ def reconstruct(session_id, events):
                 raise ValueError("INVALID_REVIEW_REFERENCES")
             item = Review(p["disposition"], tuple(refs), event.event_id, event.actor, event.occurred_at, event.reason)
             state = replace(state, reviews=state.reviews + (item,))
+        elif event.kind == "MANIFEST_SEALED":
+            if set(p) != {"schema_version", "shot_list_version", "manifest_digest"} or p["schema_version"] != VERSION:
+                raise ValueError("INVALID_SEAL_PAYLOAD")
+            expected = manifest_for(state)
+            if p["shot_list_version"] != expected.shot_list_version or p["manifest_digest"] != expected.digest():
+                raise ValueError("SEAL_SNAPSHOT_MISMATCH")
+            item = Seal(p["manifest_digest"], p["shot_list_version"], event.event_id, event.sequence, event.actor, event.occurred_at, event.reason)
+            state = replace(state, seal=item)
         else:
             raise ValueError("UNSUPPORTED_PROJECTION_EVENT")
     return state
@@ -146,6 +166,10 @@ def evaluate(session_id, events, supplied_bytes, trusted_digest):
     except ValueError:
         manifest = None
         reasons.append("CAPTURE_SET_INCOMPLETE")
+    if state.seal is None:
+        reasons.append("MANIFEST_SEAL_REQUIRED")
+    elif manifest is None or state.seal.manifest_digest != manifest.digest() or state.seal.shot_list_version != manifest.shot_list_version:
+        reasons.append("STALE_MANIFEST_SEAL")
     quality = {q.artifact_id: q for q in state.quality}
     if any(a.artifact_id not in quality or not quality[a.artifact_id].passed for a in state.artifacts):
         reasons.append("QUALITY_NOT_PASSED")

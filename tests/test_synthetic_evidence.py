@@ -21,6 +21,8 @@ class SyntheticEvidenceTests(unittest.TestCase):
             add("ARTIFACT_REGISTERED",{"artifact_id":slot,"slot":slot,"bytes_hex":data[slot].hex(),"sha256_hex":sha256(data[slot]).hexdigest()})
             add("QUALITY_RECORDED",{"artifact_id":slot,"passed":True,"method":"synthetic-fixture"})
         digest=manifest_for(reconstruct("synthetic-s",events)).digest() if omit is None else "missing-root"
+        if omit is None:
+            add("MANIFEST_SEALED",{"schema_version":"0.1","shot_list_version":load_shot_contract()[0],"manifest_digest":digest})
         return tuple(events),data,digest
     def append(self,events,kind,payload): return events+(self.event(len(events)+1,kind,payload),)
     def test_end_to_end_shared_manifest(self):
@@ -67,8 +69,8 @@ class SyntheticEvidenceTests(unittest.TestCase):
     def test_conflicting_artifact(self):
         e,b,d=self.fixture(); p=e[3].payload; p["slot"]="rear"
         with self.assertRaises(ValueError): reconstruct("synthetic-s",self.append(e,"ARTIFACT_REGISTERED",p))
-    def test_order_and_unsupported_event(self):
+    def test_order_and_invalid_seal(self):
         e,b,d=self.fixture()
         with self.assertRaises(ValueError): reconstruct("synthetic-s",(e[1],e[0])+e[2:])
-        with self.assertRaisesRegex(ValueError,"UNSUPPORTED_PROJECTION_EVENT"): reconstruct("synthetic-s",self.append(e,"MANIFEST_SEALED",{}))
+        with self.assertRaisesRegex(ValueError,"INVALID_SEAL_PAYLOAD"): reconstruct("synthetic-s",self.append(e,"MANIFEST_SEALED",{}))
 if __name__=="__main__": unittest.main()
