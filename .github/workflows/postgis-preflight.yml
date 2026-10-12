@@ -1,0 +1,42 @@
+name: PostgreSQL PostGIS preflight
+on:
+  push:
+    branches: [phase1-foundation-bootstrap]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  database-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgis/postgis:16-3.4
+        env:
+          POSTGRES_DB: claim2car_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: synthetic-ci-only
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d claim2car_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+    env:
+      PGHOST: localhost
+      PGPORT: '5432'
+      PGDATABASE: claim2car_test
+      PGUSER: postgres
+      PGPASSWORD: synthetic-ci-only
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install database client
+        run: sudo apt-get update && sudo apt-get install -y postgresql-client
+      - name: Execute read-only database preflight
+        run: |
+          set -euo pipefail
+          printf 'Commit: %s\n' "$GITHUB_SHA"
+          psql --version
+          psql -X -v ON_ERROR_STOP=1 -f tests/database/preflight.sql
