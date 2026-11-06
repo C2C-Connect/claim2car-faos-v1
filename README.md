@@ -6,15 +6,14 @@ Claim2Car Connect transforms post-crash scenes into cryptographically verified, 
 
 The traditional automotive insurance claims process operates within an archaic, highly fragmented ecosystem plagued by high operational friction, structural opacity, and systemic value leakage. Across the United States, approximately 6 million tow-eligible vehicular accidents occur every year, triggering a slow, reactive chain of manual handoffs. Under legacy workflows, field tow truck operators function merely as physical haulers devoid of digital data-capture tools; insurance carriers wait days or weeks for physical adjusters to inspect damaged assets; franchised vehicle dealerships purchase cold, unverified customer leads from third-party brokers at inflated rates; and collision repair facilities submit blind bids based on incomplete documentation. This structural lag produces inaccurate telemetry, delayed adjudication decisions, and a fragile chain of custody highly vulnerable to fraudulent claims.
 
-Claim2Car Connect (C2C) disrupts this inefficient paradigm by deploying a edge-captured Forensic Operating System. By activating a nationwide network of field tow truck operators as an active edge-sensor network, C2C captures, validates, and monetizes vehicle crash data directly at the incident scene within 30 to 90 seconds. Capturing evidence directly at the crash site secures vehicle owner consent—reinforced by an immediate $80.00 scene incentive—before legacy lead brokers, referral networks, or competing repair facilities are even notified of the collision. This real-time scene dominance establishes an insurmountable strategic moat against legacy claims management platforms such as Solera, Mitchell, CCC, and Tractable, delivering verified, brand-matched leads to automotive dealerships and body shops within 30 seconds to 24 hours.
+Claim2Car Connect (C2C) disrupts this inefficient paradigm by deploying a edge-captured Forensic Operating System. By activating a nationwide network of field tow truck operators as an active edge-sensor network, C2C captures, validates, and monetizes vehicle crash data directly at the incident scene within 30 to 90 seconds. Capturing evidence directly at the crash site secures vehicle owner consent—before legacy lead brokers, referral networks, or competing repair facilities are even notified of the collision. This real-time scene dominance establishes an insurmountable strategic moat against legacy claims management platforms such as Solera, Mitchell, CCC, and Tractable, delivering verified, brand-matched leads to automotive dealerships and body shops within 30 seconds to 24 hours.
 
 Key Operational Metrics & Financial Unit Economics
 
 Operational & Financial Metric	Quantitative Baseline & Target Value
 Tow Operator Lead Payout	$110.00 per validly captured lead
-Brand-Matched Dealer Acquisition Fee	$375.00 – $425.00 per total-loss vehicle lead
-Vehicle Owner Scene Incentive	$80.00 direct scene incentive for consent
-Sovereign Repair Shop Auction Floor Fee	$250.00 minimum commission per repairable vehicle
+Brand-Matched Dealer Acquisition Fee	$375.00 flat rate per total-loss vehicle lead
+Repair Shop Fee	$275.00 flat rate per repairable vehicle
 Lead Quality Conversion Target	70%+ conversion rate from lead to dealership appointment
 Platform Scalability & Reliability Targets	1,000+ daily incidents by Year 1; 99.9% operational uptime
 Single-Metro Annual Revenue Run-Rate	~$9.0M annualized baseline (San Antonio pilot at 120 leads/day)
@@ -183,7 +182,7 @@ Claim2Car Connect aligns the competing financial interests of Tow Operators, Fra
 ┌──────────────────────────────────────┐ ┌──────────────────────┐ ┌─────────────────────────┐
 │             CAPTURE RAIL             │ │   ACQUISITION RAIL   │ │       REPAIR RAIL       │
 │           (Tow Operators)            │ │ (Franchised Dealers) │ │    (Collision Shops)    │
-│  payout: $110.00 / valid lead        │ │ fee: $375 - $425/lead│ │ commission: ≥ $250.00   │
+│  payout: $110.00 / valid lead        │ │ fee: $375 flat/lead│ │ fee: $275.00 flat   │
 └──────────────────┬───────────────────┘ └───────────┬──────────┘ └────────────┬────────────┘
                    │                                 │                         │
                    └─────────────────────────────────┼─────────────────────────┘
@@ -198,22 +197,22 @@ Claim2Car Connect aligns the competing financial interests of Tow Operators, Fra
 Participant Unit Economics & Ecosystem Value Matrix
 
 Participant Tier	Financial Model / Payout	Primary Deliverables	Platform Access Method / Portal
-Capture Rail<br>(Tow Operator)	Earns $110.00 per validly captured incident lead	Guided AR incident capture, acoustic FFT scan, instant scene payout	Mobile App (iPad PWA / React Native)
-Acquisition Rail<br>(Brand Dealer)	Pays $375.00 – $425.00 acquisition fee	High-converting total-loss replacement lead, vehicle valuation dossier	Web Portal (pages/Dealer.jsx)
-Repair Rail<br>(Body Shop)	Pays \ge \$250.00 auction floor commission	Sovereign auction repair job allocation, structural damage summary	Web Portal (Shop Workspace)
+Capture Rail<br>(Tow Operator)	Earns $110.00 per validly captured incident lead	Guided AR incident capture, acoustic FFT scan	Mobile App (iPad PWA / React Native)
+Acquisition Rail<br>(Brand Dealer)	Pays a flat $375.00 acquisition fee	High-converting total-loss replacement lead, vehicle valuation dossier	Web Portal (pages/Dealer.jsx)
+Repair Rail<br>(Body Shop)	Pays a flat $275.00 repair fee	Sovereign auction repair job allocation, structural damage summary	Web Portal (Shop Workspace)
 Settlement Rail<br>(Carrier)	Pays per-dossier access fee for evidence	ACORD XML envelope, court-defensible forensic log, SHA-256 hash verification	Carrier API (backend.webhooks)
-Vehicle Owner	Receives $80.00 direct scene consent incentive	Transparent digital claim record, rapid vehicle resolution, immediate payout	Owner Summary Portal
+Vehicle Owner	No cash incentive (owner cash incentives permanently excluded per legal counsel)	Transparent digital claim record, rapid vehicle resolution	Owner Summary Portal
 
 Revenue Monetization Analysis & Competitive Moat
 
 Each processed incident generates multi-channel platform revenue:
 
-* Total-Loss Event: Generates a dealer acquisition fee (~$400.00) plus carrier evidence access fees.
-* Repairable Event: Generates a sovereign auction fee (\ge \$250.00) plus carrier verification charges.
+* Total-Loss Event: Generates a dealer acquisition fee (flat $375.00) plus carrier evidence access fees.
+* Repairable Event: Generates a repair-shop fee (flat $275.00) plus carrier verification charges.
 
 At a pilot volume of 120 leads/day (baseline for a metropolitan area like San Antonio), this multi-channel monetization model produces ~24,800/day in gross revenue, representing an annualized run-rate of ~9.0M per market.
 
-Securing owner consent ($80.00 incentive) and physical scene data within 90 seconds creates an insurmountable competitive moat against legacy platforms (Solera, Mitchell, CCC, Tractable). By locking in digital evidence before downstream entities are notified, Claim2Car Connect captures vehicle disposition rights directly at the scene.
+Securing owner consent and physical scene data within 90 seconds creates an insurmountable competitive moat against legacy platforms (Solera, Mitchell, CCC, Tractable). By locking in digital evidence before downstream entities are notified, Claim2Car Connect captures vehicle disposition rights directly at the scene.
 
 The programmatic algorithms governing lead allocation execute dynamically once evidence is verified.
 
@@ -234,7 +233,7 @@ Sovereign Repair Auctions (P_{\text{ensemble}} < 0.55)
 
 Incidents classified as repairable (repairable_shop) enter a 10-minute sovereign auction among qualified local body shops:
 
-* Opening Floor: $250.00 minimum bid.
+* Opening Floor: $275.00 minimum bid.
 * Anti-Snipe Extensions: Bids placed within the final 60 seconds automatically extend the auction clock by 60 seconds.
 * Time-Decay Freshness Function: Prioritizes newer leads on shop dashboards using a 6-hour half-life formula: \text{freshness} = 0.5^{\left(\frac{\text{age\_hours}}{6}\right)}
 
