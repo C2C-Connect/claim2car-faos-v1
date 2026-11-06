@@ -11,8 +11,8 @@ Claim2Car Connect (C2C) disrupts this inefficient paradigm by deploying a edge-c
 Key Operational Metrics & Financial Unit Economics
 
 Operational & Financial Metric	Quantitative Baseline & Target Value
-Tow Operator Lead Payout	$110.00 per validly captured lead
-Brand-Matched Dealer Acquisition Fee	$375.00 flat rate per total-loss vehicle lead
+Tow Operator Lead Payout	$110.00 (amount carried forward; payout trigger to be defined)
+Brand-Matched Dealer Acquisition Fee	$375.00 flat rate, due upon close of the qualified total-loss acquisition
 Repair Shop Fee	$275.00 flat rate per repairable vehicle
 Lead Quality Conversion Target	70%+ conversion rate from lead to dealership appointment
 Platform Scalability & Reliability Targets	1,000+ daily incidents by Year 1; 99.9% operational uptime
@@ -197,8 +197,8 @@ Claim2Car Connect aligns the competing financial interests of Tow Operators, Fra
 Participant Unit Economics & Ecosystem Value Matrix
 
 Participant Tier	Financial Model / Payout	Primary Deliverables	Platform Access Method / Portal
-Capture Rail<br>(Tow Operator)	Earns $110.00 per validly captured incident lead	Guided AR incident capture, acoustic FFT scan	Mobile App (iPad PWA / React Native)
-Acquisition Rail<br>(Brand Dealer)	Pays a flat $375.00 acquisition fee	High-converting total-loss replacement lead, vehicle valuation dossier	Web Portal (pages/Dealer.jsx)
+Capture Rail<br>(Tow Operator)	Earns a $110.00 payout (trigger to be defined) per validly captured incident lead	Guided AR incident capture, acoustic FFT scan	Mobile App (iPad PWA / React Native)
+Acquisition Rail<br>(Brand Dealer)	Pays a flat $375.00 acquisition fee upon close of the qualified acquisition	High-converting total-loss replacement lead, vehicle valuation dossier	Web Portal (pages/Dealer.jsx)
 Repair Rail<br>(Body Shop)	Pays a flat $275.00 repair fee	Sovereign auction repair job allocation, structural damage summary	Web Portal (Shop Workspace)
 Settlement Rail<br>(Carrier)	Pays per-dossier access fee for evidence	ACORD XML envelope, court-defensible forensic log, SHA-256 hash verification	Carrier API (backend.webhooks)
 Vehicle Owner	No cash incentive (owner cash incentives permanently excluded per legal counsel)	Transparent digital claim record, rapid vehicle resolution	Owner Summary Portal
