@@ -1,3 +1,7 @@
+> **SUPERSEDED REFERENCE — NOT THE CANONICAL PRODUCT OR VERIFIED IMPLEMENTATION (updated 2026-11-23).** This repository is a historical FAOS vision/architecture reference only. Its assertions about WORM storage, capture authenticity, court-admissible physics, calibrated damage/hidden-damage inference, Polygon anchoring, 12-angle capture, 55/45 AI blend, probabilities/thresholds, accuracy, conversion, revenue, production, and APIs are aspirational or historical descriptions and must **not** be treated as implemented, validated, operational, or legally defensible. The canonical code and status are in [C2C-Connect/claim2car-connect](https://github.com/C2C-Connect/claim2car-connect). Current focus is M1 persistent provenance followed by M2–M8 forensic substantiation. Read its [complete handoff](https://github.com/C2C-Connect/claim2car-connect/blob/main/docs/THREAD_HANDOFF_2026-11-23.md) and [program](https://github.com/C2C-Connect/claim2car-connect/blob/main/docs/forensics/FORENSIC_SUBSTANTIATION_PROGRAM.md). No forensic certification, field accuracy, causal conclusion, external notarization, or live operation is claimed.
+
+---
+
 Claim2Car Connect: Architecting the Post-Accident Forensic Operating System
 
 Claim2Car Connect transforms post-crash scenes into cryptographically verified, monetization-ready commercial assets within 30 to 90 seconds, permanently shifting reactive insurance workflows into scene-dominant lead generation.
