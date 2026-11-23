@@ -344,3 +344,6 @@ Securing physical evidence and owner consent at the scene captures multi-sided r
 By establishing a real-time forensic data layer at the scene of an accident, Claim2Car Connect converts a slow administrative process into an automated commercial ecosystem. Synthesizing mobile edge capture, physics-based structural analysis, and cryptographic authentication creates a transparent framework for drivers, dealerships, repair facilities, and insurance carriers.
 
 How will the integration of real-time autonomous vehicle telemetry, sovereign AI models, and automated smart contract adjudication permanently redefine global vehicle remarketing, insurance subrogation, and post-accident commerce over the next decade?
+
+
+The complete current requirements baseline (including measurement models, uncertainty, validation methodology, ordered implementation gates, and current verified status) is [the canonical complete forensic substantiation specification](https://github.com/C2C-Connect/claim2car-connect/blob/main/docs/forensics/COMPLETE_FORENSIC_SUBSTANTIATION_SPEC.md). This reference repository is superseded; the specification describes requirements and must not be mistaken for implemented capabilities.
